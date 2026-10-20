@@ -15,8 +15,21 @@
   })
 
   cw1.addEventListener("click", function () {
-    //TODO
-  })
+    answer.textContent = "";
+    fetch("https://jsonplaceholder.typicode.com/posts ")
+      .then((response) => response.json())
+      .then((json) => {
+        const fragment = document
+          .createDocumentFragment()
+          .appendChild(document.createElement("ul"));
+        console.log(json);
+        for (var i in json) {
+          const li = fragment.appendChild(document.createElement("li"));
+          li.textContent = JSON.stringify(json[i]);
+        }
+        answer.appendChild(fragment);
+      });
+  });
 
   cw2.addEventListener("click", function () {
     //TODO
